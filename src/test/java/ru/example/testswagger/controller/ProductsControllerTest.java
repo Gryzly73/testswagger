@@ -1,11 +1,9 @@
 package ru.example.testswagger.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import ru.example.testswagger.TestswaggerApplication;
 import ru.example.testswagger.controller.dto.CustomersDTO;
 import ru.example.testswagger.controller.dto.NewProductsDTO;
 import ru.example.testswagger.controller.dto.ProductsDTO;
-import ru.example.testswagger.model.Customers;
 import ru.example.testswagger.model.Products;
 import ru.example.testswagger.repository.CustomersRepository;
 import ru.example.testswagger.repository.ProductsRepository;
@@ -173,7 +170,6 @@ class ProductsControllerTest {
         updateProductsDTO.setDescription("New description");
         updateProductsDTO.setDecimal(99.99);
         updateProductsDTO.setCustomerId(idCustomer_1);
-       // updateProductsDTO.setId(idUUIDProduct_1);
         String request = objectMapper.writeValueAsString(updateProductsDTO);
         mockMvc.perform(
                 put("/products/"+toString)
@@ -182,32 +178,23 @@ class ProductsControllerTest {
                 .andExpect(status().isOk()).andReturn();
 
         var actual = productsRepository.getById(expected.getId());
-
-
         assertEquals(updateProductsDTO.getTitle(), actual.getTitle());
         assertEquals(updateProductsDTO.getDescription(), actual.getDescription());
         assertEquals(updateProductsDTO.getDecimal(), actual.getDecimal());
         assertNotNull(actual.getModified());
     }
 
-    private void createListCustomers() throws JsonProcessingException {
+    private void createListCustomers(){
         customersDTO_1.setTitle("title_1");
-   //     customersDTO_1.setCreated(LocalDateTime.now());
-//        customersDTO_1.setId(idUUID_1);
         customersService.saveCustomer(customersDTO_1);
-        String request_1 = objectMapper.writeValueAsString(customersDTO_1);
 
         customersDTO_2.setTitle("title_2");
-  //      customersDTO_2.setCreated(LocalDateTime.now());
-  //      customersDTO_2.setId(idUUID_2);
         customersService.saveCustomer(customersDTO_2);
-        String request_2 = objectMapper.writeValueAsString(customersDTO_2);
     }
 
-    private void createListProducts() throws JsonProcessingException {
+    private void createListProducts() {
         createListCustomers();
         UUID idCustomer_1 = customersService.getAllCustomers().get(0).getId();
-        UUID idCustomer_2 = customersService.getAllCustomers().get(1).getId();
 
         productsDTO_1.setTitle("Product_1");
         productsDTO_1.setCreated(LocalDateTime.now().minusHours(24));
@@ -215,13 +202,11 @@ class ProductsControllerTest {
         productsDTO_1.setDescription("Description_1");
         productsDTO_1.setId(idCustomer_1);
         productsService.saveProduct(idCustomer_1, productsDTO_1);
-        String requestProduct_1 = objectMapper.writeValueAsString(productsDTO_1);
 
         productsDTO_2.setTitle("Product_2");
         productsDTO_2.setCreated(LocalDateTime.now());
         productsDTO_2.setDecimal(62.0);
         productsDTO_2.setId(idCustomer_1);
         productsService.saveProduct(idCustomer_1, productsDTO_2);
-        String requestProduct_2 = objectMapper.writeValueAsString(productsDTO_2);
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/")
-@Tag(name = "Customers", description = "Набор операций для работы с customers")
+@Tag(name = "Customers")
 public interface CustomersController {
 
     @GetMapping(value = "customers", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -9,9 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/**
- * Data transfer object with data about existing department.
- */
 @Getter
 @Setter
 @JsonPropertyOrder({ "id" })

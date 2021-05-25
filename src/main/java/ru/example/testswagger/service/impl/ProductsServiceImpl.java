@@ -1,7 +1,6 @@
 package ru.example.testswagger.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.internal.util.collections.ConcurrentReferenceHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.example.testswagger.controller.dto.NewProductsDTO;

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/")
-@Tag(name = "Products", description = "Набор операций для работы с products")
+@Tag(name = "Products")
 @RestController
 public interface ProductsController {
 

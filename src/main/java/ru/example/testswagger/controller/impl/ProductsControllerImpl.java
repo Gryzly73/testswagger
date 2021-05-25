@@ -5,19 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.example.testswagger.controller.CustomersController;
 import ru.example.testswagger.controller.ProductsController;
-import ru.example.testswagger.controller.dto.CustomersDTO;
 import ru.example.testswagger.controller.dto.NewProductsDTO;
 import ru.example.testswagger.controller.dto.ProductsDTO;
-import ru.example.testswagger.model.Customers;
 import ru.example.testswagger.model.Products;
-import ru.example.testswagger.service.CustomersService;
 import ru.example.testswagger.service.ProductsService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @RequiredArgsConstructor

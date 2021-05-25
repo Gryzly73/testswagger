@@ -1,12 +1,9 @@
 package ru.example.testswagger.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.util.Assert;
 import ru.example.testswagger.TestswaggerApplication;
 import ru.example.testswagger.controller.dto.CustomersDTO;
 import ru.example.testswagger.controller.dto.NewCustomersDTO;
@@ -25,12 +21,8 @@ import ru.example.testswagger.model.Customers;
 import ru.example.testswagger.repository.CustomersRepository;
 import ru.example.testswagger.repository.ProductsRepository;
 import ru.example.testswagger.service.CustomersService;
-import ru.example.testswagger.service.ProductsService;
 
 import javax.transaction.Transactional;
-
-import java.io.UnsupportedEncodingException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -86,7 +78,6 @@ class CustomersControllerTest {
 
     @Test
     void getAllCustomers() throws Exception {
-
        createListCustomers();
         var response =
                 mockMvc.perform(
@@ -145,19 +136,16 @@ class CustomersControllerTest {
                         .andExpect(status().isOk()).andReturn();
 
         Customers actual = customersRepository.getById(uuid_1);
-
         assertEquals(updateCustomersDTO.getId(), actual.getId());
         assertEquals(updateCustomersDTO.getTitle(), actual.getTitle());
         assertNotNull(actual.getModified());
         assertEquals(updateCustomersDTO.isDeleted(), actual.isDeleted());
     }
 
-    private void createListCustomers() throws JsonProcessingException {
+    private void createListCustomers() {
         customersDTO_1.setTitle("title_1");
         customersService.saveCustomer(customersDTO_1);
-        String request_1 = objectMapper.writeValueAsString(customersDTO_1);
         customersDTO_2.setTitle("title_2");
         customersService.saveCustomer(customersDTO_2);
-        String request_2 = objectMapper.writeValueAsString(customersDTO_2);
     }
 }

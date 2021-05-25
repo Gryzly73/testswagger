@@ -4,7 +4,6 @@ package ru.example.testswagger.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.example.testswagger.controller.dto.CustomersDTO;
 import ru.example.testswagger.controller.dto.NewCustomersDTO;
 import ru.example.testswagger.model.Customers;
 import ru.example.testswagger.repository.CustomersRepository;

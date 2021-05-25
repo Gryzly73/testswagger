@@ -4,15 +4,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
-
-
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/**
- * Data transfer object with data about existing department.
- */
 @Getter
 @Setter
 @JsonPropertyOrder({ "id" })
