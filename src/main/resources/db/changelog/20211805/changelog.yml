@@ -1,0 +1,18 @@
+databaseChangeLog:
+  -   changeSet:
+        id: changelog/20211605
+        author: medvedev_mm
+        dbms: postgresql
+        changes:
+          -   sqlFile:
+                endDelimiter: ;
+                path: create_shema.sql
+                relativeToChangelogFile: true
+          -   sqlFile:
+                endDelimiter: ;
+                path: create_table_customers.sql
+                relativeToChangelogFile: true
+           -   sqlFile:
+               endDelimiter: ;
+               path: create_table_products.sql
+               relativeToChangelogFile: true
